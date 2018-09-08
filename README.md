@@ -67,3 +67,6 @@ parameters in the code and add it to your site.
 
 **NB**: that you need to type in the `amount` being charged here to show it
 to your customer when the form comes up.
+
+## Feedback/Issues/Suggestions
+[All inputs welcome](https://github.com/theproductiveprogrammer/ybc/issues)
