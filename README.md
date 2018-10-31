@@ -1,7 +1,7 @@
 YBC - A Simple Stripe Backend
 =============================
 
-![YBC](ybc.png)
+![YBC](payment.png)
 
 [Stripe](https://stripe.com/) is simple, brilliant solution for small
 businesses wanting to accept payments from their users.
@@ -27,46 +27,37 @@ All that is required is:
 * the price of the product
 * the mail template to send across to the user
 
-```txt
-[keys]
-stripe=<stripe key>
-mailgun=<mailgun key>
-
-[myproduct1]
-price=4800  # $48 in cents
-```
-```txt
-Hi!
-
-Thanks for buying my product.
-Click <a href=/some/product.delivery?user={{email}}>here</a> for your copy.
-
-Thanks!
-```
-
 And YBC will do the rest. On the front-end, we use
 [`Checkout`](https://stripe.com/docs/checkout) which is a beautifully
 designed, extensively UX-tested experience designed by
-[Stripe](https://stripe.com). To do this, simply update the following
-parameters in the code and add it to your site.
+[Stripe](https://stripe.com).
 
-```html
-<form action="your-server-side-code" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_TYooMQauvdEDq54NiTphI7jx"
-    data-amount="999"
-    data-name="Stripe.com"
-    data-description="Widget"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="auto"
-    data-zip-code="true">
-  </script>
-</form>
+
+## Setup
+
+Please copy the code from `buy.html` and **MAKE SURE YOU CHANGE THE
+STRIPE KEY** to your own key.
+
+Then create a `ybc.cfg` file that contains the following:
+
+```txt
+Amount = 4800
+ChargeDescription = "YBC-Acne Healing Diet"
+RedirectAfter = "https://www.yourbeautychronicles.com/thank-you-page/"
+
+MailFrom = "Anjali Lobo <yourbeautychronicles@gmail.com>"
+MailSubject = "The Acne Healing Diet"
+
+StripeKey = "<<YOUR STRIPE KEY>>"
+
+MailgunDomain = "<<YOUR MAILGUN DOMAIN>>"
+MailgunPvtKey = "<<YOUR MAILGUN PRIVATE KEY>>"
 ```
 
-**NB**: that you need to type in the `amount` being charged here to show it
-to your customer when the form comes up.
+Also create two files: `mail.txt` and `mail.html` that contain your
+welcome mail (in text and HTML format).
+
+Once this is done, you are ready to go!
 
 ## Feedback/Issues/Suggestions
 [All inputs welcome](https://github.com/theproductiveprogrammer/ybc/issues)
